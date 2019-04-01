@@ -1,7 +1,10 @@
 {
-    "httpEndPoint": "https://api.eoseco.com",
-    "chainId": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
+    "httpEndPoint": "http://api.goclab.io:8080",
+    "chainId": "4abcef3ea73a7cd42b2e39e247355048b684225d21d68aa303dd22712e8ca05d",
     "wif": "",
-    "producerName": "eosecoeoseco",
-    "permission": "claimer"
+    "producerName": "blockedencom",
+    "permission": "claimer",
+    "keyPrefix": "GOC",
+    "systemContract": "gocio",
+    "vpayThreshold": 1000
 }

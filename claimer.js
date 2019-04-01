@@ -5,10 +5,15 @@ const chainId = config.chainId;
 const wif = config.wif;
 const producerName = config.producerName;
 const permission = config.permission;
+const keyPrefix = config.keyPrefix;
+const systemContract = config.systemContract;
+const vpayThreshold = config.vpayThreshold;
 
 var eos = Eos({
-    httpEndpoint: httpEndPoint, chainId: chainId,
-    keyProvider: wif
+    httpEndpoint: httpEndPoint,
+    chainId: chainId,
+    keyProvider: wif,
+    keyPrefix: keyPrefix
 });
 
 
@@ -20,7 +25,7 @@ function cacheRewards() {
     Promise.all([getGlobal(), getProducer(producerName)]).then(([global, producer]) => {
         let bpay = (global.perblock_bucket * producer.unpaid_blocks) / global.total_unpaid_blocks / 10000;
         let vpay = (global.pervote_bucket * producer.total_votes) / (1 * global.total_producer_vote_weight) / 10000;
-        if (vpay < 100) {
+        if (vpay < vpayThreshold) {
             vpay = 0;
         }
         let last_time = Date.parse(producer.last_claim_time + "Z");
@@ -42,7 +47,7 @@ function cacheRewards() {
                 // ...headers,
                 actions: [
                     {
-                        account: 'eosio',
+                        account: systemContract,
                         name: 'claimrewards',
                         authorization: [{
                             actor: producerName,
@@ -58,7 +63,7 @@ function cacheRewards() {
             }, err => {
                 console.error(err);
                 //retry
-                cacheRewards();
+                // cacheRewards();
             });
         }
     });
@@ -67,8 +72,8 @@ function cacheRewards() {
 function getGlobal() {
     return new Promise((resolve, reject) => {
         eos.getTableRows({
-            "scope": "eosio",
-            "code": "eosio",
+            "scope": systemContract,
+            "code": systemContract,
             "table": "global",
             "json": true
         }).then(res => {
@@ -83,8 +88,8 @@ function getGlobal() {
 function getProducer(name) {
     return new Promise((resolve, reject) => {
         eos.getTableRows({
-            "scope": "eosio",
-            "code": "eosio",
+            "scope": systemContract,
+            "code": systemContract,
             "table": "producers",
             "lower_bound": name,
             "limit": 1,
