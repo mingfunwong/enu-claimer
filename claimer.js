@@ -28,7 +28,7 @@ function cacheRewards() {
         if (vpay < vpayThreshold) {
             vpay = 0;
         }
-        let last_time = Date.parse(producer.last_claim_time + "Z");
+        let last_time = producer.last_claim_time / 1000;
         let next_claim_time = 1 * last_time + 24 * 60 * 60 * 1000;
         console.log("now:", Date.now());
         console.log("next_claim_time:", next_claim_time);
