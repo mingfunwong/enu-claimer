@@ -7,7 +7,6 @@ const producerName = config.producerName;
 const permission = config.permission;
 const keyPrefix = config.keyPrefix;
 const systemContract = config.systemContract;
-const vpayThreshold = config.vpayThreshold;
 
 var eos = Eos({
     httpEndpoint: httpEndPoint,
