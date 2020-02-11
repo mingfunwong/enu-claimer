@@ -1,9 +1,13 @@
 {
-    "httpEndPoint": "",
-    "chainId": "",
-    "wif": "",
-    "producerName": "",
-    "permission": "claimer",
-    "keyPrefix": "EOS",
-    "systemContract": "eosio"
+    "claimers": [
+        {
+            "httpEndPoint": "",
+            "chainId": "",
+            "wif": "",
+            "producerName": "",
+            "permission": "claimer",
+            "keyPrefix": "EOS",
+            "systemContract": "eosio"
+        }
+    ]
 }
