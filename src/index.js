@@ -2,8 +2,8 @@ require('dotenv').config();
 const Eos = require('eosjs');
 
 cacheRewards();
-//try every 10 min
-setInterval(cacheRewards, 10 * 60 * 1000);
+//try every 24 hours
+setInterval(cacheRewards, 1 * 60 * 60 * 1000 + 5000);
 //////////////////////////
 async function cacheRewards() {
   const { httpEndPoint, chainId, wif, producerName, permission, keyPrefix, systemContract } = process.env;

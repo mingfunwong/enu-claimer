@@ -1,10 +1,10 @@
 {
-  "name": "eos-claimer",
+  "name": "enu-claimer",
   "version": "1.0.0",
   "description": "auto script for bp to claim rewards",
-  "main": "claimer.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node claimer"
+    "start": "node index"
   },
   "author": "Joshua Qiu",
   "license": "ISC",

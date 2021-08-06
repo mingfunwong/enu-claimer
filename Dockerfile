@@ -27,7 +27,8 @@
   COPY --from=install $APP_PATH/node_modules ./node_modules
 
   # copy all files in the current directory except for .dockerignore copy into the mirror s working directory
-  COPY . .
+  COPY package.json .
+  COPY src .
 
   # start up
   CMD yarn start
