@@ -1,6 +1,6 @@
 version: '2'
 services:
-  fibos:
+  enu-claimer:
     # build: ./
     image: mingfunwong/enujs:enu-auto-claimbonus
     restart: always
